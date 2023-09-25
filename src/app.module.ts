@@ -5,9 +5,20 @@ import { AuthModule } from './auth/auth.module';
 import { TopPageModule } from './top-page/top-page.module';
 import { ProductModule } from './product/product.module';
 import { ReviewModule } from './review/review.module';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [AuthModule, TopPageModule, ProductModule, ReviewModule],
+  imports: [
+    AuthModule,
+    TopPageModule,
+    ProductModule,
+    ReviewModule,
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(
+      'mongodb://admin:admin@localhost:27017/?authMechanism=DEFAULT',
+    ),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
